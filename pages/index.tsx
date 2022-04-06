@@ -33,7 +33,7 @@ const Home: NextPage = () => {
                     justifyContent='flex-end'
                 >
                     <p>Get Started</p>
-                    <Link href='/'>
+                    <Link href='/phone'>
                         <a>
                             <ArrowRight style={{ cursor: 'pointer' }} />
                         </a>
