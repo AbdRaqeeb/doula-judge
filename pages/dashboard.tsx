@@ -12,7 +12,7 @@ const placeholder = 'Search wellbeing, people, articles';
 
 const Dashboard = () => {
     return (
-        <Navigation>
+        <Navigation value={0}>
             <Stack direction='column' spacing={2} sx={{padding: '20px', height: '100%'}}>
                 <Navbar style={{width: '100%'}}/>
                 <Input size="large" placeholder={placeholder} prefix={<SearchOutlined/>}/>

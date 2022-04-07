@@ -1,4 +1,5 @@
-import React, { ReactElement, ReactNode, useState } from 'react';
+import React, { ReactElement, ReactNode } from 'react';
+import { useRouter } from 'next/router';
 import {
     BottomNavigation,
     BottomNavigationAction,
@@ -13,10 +14,17 @@ import WellBeing from '../assets/Wellbeing.svg'
 
 export interface INavigationProps {
     children: ReactNode | ReactElement
+    value: number;
+    href?: string
 }
 
-const Navigation = ({ children}: INavigationProps) => {
-    const [value, setValue] = useState(0);
+const Navigation = ({ children, value}: INavigationProps) => {
+    const router = useRouter();
+
+    const onLink = (href: string): void => {
+        router.push(href);
+    };
+
     return (
         <>
             <Grid
@@ -32,15 +40,32 @@ const Navigation = ({ children}: INavigationProps) => {
                     <BottomNavigation
                         showLabels
                         value={value}
-                        onChange={(event: any, newValue: number) => {
-                            setValue(newValue);
-                        }}
                     >
-                        <BottomNavigationAction label="Home" icon={<Home />} />
-                        <BottomNavigationAction label="Wellbeing" icon={<WellBeing/>} />
-                        <BottomNavigationAction label="Articles" icon={<Articles />} />
-                        <BottomNavigationAction label="Community" icon={<Community />} />
-                        <BottomNavigationAction label="Birthplan" icon={<BirthPlan />} />
+                        <BottomNavigationAction
+                            label="Home"
+                            icon={<Home />}
+                           onClick={() => onLink('/dashboard')}
+                        />
+                        <BottomNavigationAction
+                            label="Wellbeing"
+                            icon={<WellBeing/>}
+                            onClick={() => onLink('/wellbeing')}
+                        />
+                        <BottomNavigationAction
+                            label="Articles"
+                            icon={<Articles />}
+                            onClick={() => onLink('/articles')}
+                        />
+                        <BottomNavigationAction
+                            label="Community"
+                            icon={<Community />}
+                            onClick={() => onLink('/community')}
+                        />
+                        <BottomNavigationAction
+                            label="Birthplan"
+                            icon={<BirthPlan />}
+                            onClick={() => onLink('/birthplan')}
+                        />
                     </BottomNavigation>
                 </Paper>
             </Grid>
